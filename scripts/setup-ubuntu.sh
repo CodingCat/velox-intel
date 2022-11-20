@@ -21,32 +21,6 @@ source $SCRIPTDIR/setup-helper-functions.sh
 NPROC=$(getconf _NPROCESSORS_ONLN)
 DEPENDENCY_DIR=${DEPENDENCY_DIR:-$(pwd)}
 
-# Install all velox and folly dependencies.
-sudo --preserve-env apt install -y \
-  g++ \
-  cmake \
-  ccache \
-  ninja-build \
-  checkinstall \
-  git \
-  libssl-dev \
-  libboost-all-dev \
-  libdouble-conversion-dev \
-  libgoogle-glog-dev \
-  libbz2-dev \
-  libgflags-dev \
-  libgmock-dev \
-  libevent-dev \
-  liblz4-dev \
-  libzstd-dev \
-  libre2-dev \
-  libsnappy-dev \
-  liblzo2-dev \
-  bison \
-  flex \
-  tzdata \
-  wget
-
 function run_and_time {
   time "$@"
   { echo "+ Finished running $*"; } 2> /dev/null
@@ -72,18 +46,6 @@ function install_fmt {
   cmake_install -DFMT_TEST=OFF
 }
 
-function install_protobuf {
-  wget https://github.com/protocolbuffers/protobuf/releases/download/v21.4/protobuf-all-21.4.tar.gz
-  tar -xzf protobuf-all-21.4.tar.gz
-  cd protobuf-21.4
-  ./configure \
-      CXXFLAGS="-fPIC" \
-      --prefix=/usr
-  make "-j$(nproc)"
-  sudo make install
-  sudo ldconfig
-}
-
 function install_velox_deps {
   run_and_time install_fmt
 }
@@ -96,7 +58,8 @@ function install_velox_deps {
       run_and_time "${cmd}"
     done
   else
-    install_velox_deps
+#    install_velox_deps 
+     echo "do nothing\n"
   fi
 )
 
