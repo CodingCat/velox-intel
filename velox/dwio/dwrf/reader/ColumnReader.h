@@ -167,7 +167,7 @@ inline void resetIfNotWritable(VectorPtr& result, T&... buffer) {
     return reset;
   };
 
-  if ((... || resetIfShared(buffer))) {
+  if ((... | int(resetIfShared(buffer))) != 0) {
     result.reset();
   }
 }

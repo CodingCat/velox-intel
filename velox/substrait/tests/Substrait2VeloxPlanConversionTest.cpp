@@ -34,6 +34,10 @@ namespace vestrait = facebook::velox::substrait;
 
 class Substrait2VeloxPlanConversionTest
     : public exec::test::HiveConnectorTestBase {
+
+ private:
+  std::unique_ptr<memory::MemoryPool> memoryPool_{
+      memory::getDefaultScopedMemoryPool()};
  protected:
   std::vector<std::shared_ptr<facebook::velox::connector::ConnectorSplit>>
   makeSplits(
@@ -74,9 +78,6 @@ class Substrait2VeloxPlanConversionTest
       std::make_shared<vestrait::SubstraitVeloxPlanConverter>(
           memoryPool_.get());
 
- private:
-  std::shared_ptr<memory::MemoryPool> memoryPool_{
-      memory::getDefaultMemoryPool()};
 };
 
 // This test will firstly generate mock TPC-H lineitem ORC file. Then, Velox's
