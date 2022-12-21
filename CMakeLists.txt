@@ -279,7 +279,7 @@ if("${ENABLE_ALL_WARNINGS}")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra ${KNOWN_WARNINGS}")
 endif()
 
-set(CMAKE_CXX_FLAGS "-stdlib=libc++ -Wno-nullability-completeness ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wno-nullability-completeness ${CMAKE_CXX_FLAGS}")
 
 message("FINAL CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
 
