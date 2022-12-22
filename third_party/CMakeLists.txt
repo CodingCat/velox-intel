@@ -32,8 +32,6 @@ if(VELOX_ENABLE_ARROW)
   endif()
   set(ARROW_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/arrow_ep")
   set(ARROW_CMAKE_ARGS
-      -DCMAKE_CXX_COMPILER=clang++
-      -DCMAKE_CXX_FLAGS=-stdlib=libc++
       -DARROW_PARQUET=ON
       -DARROW_WITH_LZ4=ON
       -DARROW_WITH_SNAPPY=ON
