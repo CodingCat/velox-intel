@@ -106,8 +106,7 @@ function install_velox_deps {
       run_and_time "${cmd}"
     done
   else
-#    install_velox_deps 
-     echo "do nothing\n"
+     install_velox_deps 
   fi
 )
 
